@@ -31,28 +31,29 @@ import java.util.Arrays;
  * @since JDK 1.8
  */
 public class DecoderUtils {
-    private DecoderUtils() {
-    }
+	private DecoderUtils() {
+	}
 
-    public static boolean readPine(ByteBuf in) {
-        boolean readPine = false;
-        while (true) {
+	public static boolean readPine(ByteBuf in) {
+		boolean readPine = false;
+		boolean loop = true;
+		while (loop) {
 
-            byte[] bytes = new byte[4];
-            in.readBytes (bytes);
+			byte[] bytes = new byte[4];
+			in.readBytes(bytes);
 
-            if (Arrays.equals (CoderConstant.PINE.getValue (), bytes)) {
-                readPine = true;
-                break;
-            }
+			if (Arrays.equals(CoderConstant.PINE.getValue(), bytes)) {
+				readPine = true;
+				break;
+			}
 
-            in.resetReaderIndex ();
-            in.readByte ();
+			in.resetReaderIndex();
+			in.readByte();
 
-            if (in.readableBytes () < DecoderConstant.MINIMUM_DECODING.getValue ()) {
-                return readPine;
-            }
-        }
-        return readPine;
-    }
+			if (in.readableBytes() < DecoderConstant.MINIMUM_DECODING.getValue()) {
+				loop = false;
+			}
+		}
+		return readPine;
+	}
 }

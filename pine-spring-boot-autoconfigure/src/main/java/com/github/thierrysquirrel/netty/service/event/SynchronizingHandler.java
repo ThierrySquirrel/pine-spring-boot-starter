@@ -44,6 +44,10 @@ public class SynchronizingHandler {
     @PineServiceEvent(modular = Modular.SYNCHRONIZING, command = Command.SYNCHRONOUS_PRODUCERS)
     public void synchronousProducers(ChannelHandlerContext ctx, PineRequestContext msg, String clientServiceName, String clientServiceUrl) {
         HeartbeatFactory.getClientServicePing (clientServiceName, clientServiceUrl, pineServiceProperties.getMaxNumberHeartbeatTimeouts ());
+        /**
+         * 不能直接调用ctx.channel ().writeAndFlush (msg);
+         * 这是异步的，msg可能被释放
+         */
         ctx.channel ().writeAndFlush (msg);
     }
 }
