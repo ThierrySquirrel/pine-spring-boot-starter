@@ -31,67 +31,75 @@ import java.util.List;
  * @since JDK 1.8
  */
 public class PineRequestContextFactory {
-    private PineRequestContextFactory() {
-    }
+	private PineRequestContextFactory() {
+	}
 
-    private static PineRequestContext getPineRequestContext() {
-        return new PineRequestContext ();
-    }
+	private static PineRequestContext getPineRequestContext() {
+		return new PineRequestContext();
+	}
 
-    public static PineRequestContext createPingPineRequestContext(String clientServiceName, String clientServiceUrl) {
-        PineRequestContext pineRequestContext = getPineRequestContext ();
-        PineRequestContextModularFactory.buildHeartbeat (pineRequestContext);
-        PineRequestContextCommandFactory.buildPing (pineRequestContext);
-        PineRequest pineRequest = PineRequestFactory.buildPinePineRequest (clientServiceName, clientServiceUrl);
-        pineRequestContext.setPineRequest (pineRequest);
-        return pineRequestContext;
-    }
+	public static PineRequestContext createPingPineRequestContext(String clientServiceName, String clientServiceUrl) {
+		PineRequestContext pineRequestContext = getPineRequestContext();
+		PineRequestContextModularFactory.buildHeartbeat(pineRequestContext);
+		PineRequestContextCommandFactory.buildPing(pineRequestContext);
+		PineRequest pineRequest = PineRequestFactory.buildPinePineRequest(clientServiceName, clientServiceUrl);
+		pineRequestContext.setPineRequest(pineRequest);
+		return pineRequestContext;
+	}
 
-    public static PineRequestContext createPangPineRequestContext() {
-        PineRequestContext pineRequestContext = getPineRequestContext ();
-        PineRequestContextModularFactory.buildHeartbeat (pineRequestContext);
-        PineRequestContextCommandFactory.buildPang (pineRequestContext);
-        return pineRequestContext;
-    }
+	public static PineRequestContext createPangPineRequestContext() {
+		PineRequestContext pineRequestContext = getPineRequestContext();
+		PineRequestContextModularFactory.buildHeartbeat(pineRequestContext);
+		PineRequestContextCommandFactory.buildPang(pineRequestContext);
+		return pineRequestContext;
+	}
 
-    public static PineRequestContext createSynchronousProducers(String clientServiceName, String clientServiceUrl) {
-        PineRequestContext pineRequestContext = getPineRequestContext ();
-        PineRequestContextModularFactory.buildSynchronizing (pineRequestContext);
-        PineRequestContextCommandFactory.buildSynchronousProducers (pineRequestContext);
-        PineRequest pineRequest = PineRequestFactory.buildSynchronousProducersPineRequest (clientServiceName, clientServiceUrl);
-        pineRequestContext.setPineRequest (pineRequest);
-        return pineRequestContext;
-    }
+	public static PineRequestContext createSynchronousProducers(String clientServiceName, String clientServiceUrl) {
+		PineRequestContext pineRequestContext = getPineRequestContext();
+		PineRequestContextModularFactory.buildSynchronizing(pineRequestContext);
+		PineRequestContextCommandFactory.buildSynchronousProducers(pineRequestContext);
+		PineRequest pineRequest = PineRequestFactory.buildSynchronousProducersPineRequest(clientServiceName, clientServiceUrl);
+		pineRequestContext.setPineRequest(pineRequest);
+		return pineRequestContext;
+	}
 
-    public static PineRequestContext createByProducersNameGetUrlsResponse(List<String> byProducersNameGetUrls) {
-        PineRequestContext pineRequestContext = getPineRequestContext ();
-        PineResponse pineResponse = PineResponseFactory.buildByProducersNameGetUrls (byProducersNameGetUrls);
-        pineRequestContext.setPineResponse (pineResponse);
-        return pineRequestContext;
-    }
+	public static PineRequestContext createByProducersNameGetUrlsResponse(List<String> byProducersNameGetUrls) {
+		PineRequestContext pineRequestContext = getPineRequestContext();
+		PineResponse pineResponse = PineResponseFactory.buildByProducersNameGetUrls(byProducersNameGetUrls);
+		pineRequestContext.setPineResponse(pineResponse);
+		return pineRequestContext;
+	}
 
-    public static PineRequestContext createByProducersNameGetUrlsRequest(String producersName) {
-        PineRequestContext pineRequestContext = getPineRequestContext ();
-        PineRequestContextModularFactory.buildConsumption (pineRequestContext);
-        PineRequestContextCommandFactory.buildByProducersNameGetUrl (pineRequestContext);
-        PineRequest pineRequest = PineRequestFactory.buildByProducersNameGetUrls (producersName);
-        pineRequestContext.setPineRequest (pineRequest);
-        return pineRequestContext;
-    }
+	public static PineRequestContext createByProducersNameGetUrlsRequest(String producersName) {
+		PineRequestContext pineRequestContext = getPineRequestContext();
+		PineRequestContextModularFactory.buildConsumption(pineRequestContext);
+		PineRequestContextCommandFactory.buildByProducersNameGetUrl(pineRequestContext);
+		PineRequest pineRequest = PineRequestFactory.buildByProducersNameGetUrls(producersName);
+		pineRequestContext.setPineRequest(pineRequest);
+		return pineRequestContext;
+	}
 
-    public static PineRequestContext createRpcRequest(String coordinate, Object[] args) {
-        PineRequestContext pineRequestContext = getPineRequestContext ();
-        PineRequestContextModularFactory.buildConsumption (pineRequestContext);
-        PineRequestContextCommandFactory.buildRpc (pineRequestContext);
-        PineRequest pineRequest = PineRequestFactory.buildRpc (coordinate, args);
-        pineRequestContext.setPineRequest (pineRequest);
-        return pineRequestContext;
-    }
+	public static PineRequestContext createRpcRequest(String coordinate, Object[] args) {
+		PineRequestContext pineRequestContext = getPineRequestContext();
+		PineRequestContextModularFactory.buildConsumption(pineRequestContext);
+		PineRequestContextCommandFactory.buildRpc(pineRequestContext);
+		PineRequest pineRequest = PineRequestFactory.buildRpc(coordinate, args);
+		pineRequestContext.setPineRequest(pineRequest);
+		return pineRequestContext;
+	}
 
-    public static PineRequestContext createRpcResponse(Object object) {
-        PineRequestContext pineRequestContext = getPineRequestContext ();
-        PineResponse pineResponse = PineResponseFactory.buildRpc (object);
-        pineRequestContext.setPineResponse (pineResponse);
-        return pineRequestContext;
-    }
+	public static PineRequestContext createRpcResponse(Object object) {
+		PineRequestContext pineRequestContext = getPineRequestContext();
+		PineResponse pineResponse = PineResponseFactory.buildRpc(object);
+		pineRequestContext.setPineResponse(pineResponse);
+		return pineRequestContext;
+	}
+
+	public static PineRequestContext createSynchronousResponse(String clientServiceUrl) {
+		PineRequestContext pineRequestContext = getPineRequestContext();
+		PineResponse pineResponse = PineResponseFactory.buildSynchronous(clientServiceUrl);
+		pineRequestContext.setPineResponse(pineResponse);
+		return pineRequestContext;
+	}
+
 }

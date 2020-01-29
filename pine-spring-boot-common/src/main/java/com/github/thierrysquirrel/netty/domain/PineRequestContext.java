@@ -20,6 +20,8 @@ import com.github.thierrysquirrel.netty.domain.constant.Command;
 import com.github.thierrysquirrel.netty.domain.constant.Modular;
 import lombok.Data;
 
+import java.util.Map;
+
 /**
  * ClassName: PineRequestContext
  * Description:
@@ -30,8 +32,9 @@ import lombok.Data;
  */
 @Data
 public class PineRequestContext {
-    private Command command;
-    private Modular modular;
-    private PineRequest pineRequest;
-    private PineResponse pineResponse;
+	private Command command;
+	private Modular modular;
+	private Map<String, String> attachment;
+	private PineRequest pineRequest;
+	private PineResponse pineResponse;
 }

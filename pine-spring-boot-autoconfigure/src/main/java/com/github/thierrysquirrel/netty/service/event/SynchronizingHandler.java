@@ -19,6 +19,7 @@ package com.github.thierrysquirrel.netty.service.event;
 import com.github.thierrysquirrel.annotation.PineServiceEvent;
 import com.github.thierrysquirrel.annotation.PineServiceHandler;
 import com.github.thierrysquirrel.autoconfigure.PineServiceProperties;
+import com.github.thierrysquirrel.netty.core.client.factory.PineRequestContextFactory;
 import com.github.thierrysquirrel.netty.domain.PineRequestContext;
 import com.github.thierrysquirrel.netty.domain.constant.Command;
 import com.github.thierrysquirrel.netty.domain.constant.Modular;
@@ -38,16 +39,13 @@ import javax.annotation.Resource;
  */
 @PineServiceHandler
 public class SynchronizingHandler {
-    @Resource
-    private PineServiceProperties pineServiceProperties;
+	@Resource
+	private PineServiceProperties pineServiceProperties;
 
-    @PineServiceEvent(modular = Modular.SYNCHRONIZING, command = Command.SYNCHRONOUS_PRODUCERS)
-    public void synchronousProducers(ChannelHandlerContext ctx, PineRequestContext msg, String clientServiceName, String clientServiceUrl) {
-        HeartbeatFactory.getClientServicePing (clientServiceName, clientServiceUrl, pineServiceProperties.getMaxNumberHeartbeatTimeouts ());
-        /**
-         * 不能直接调用ctx.channel ().writeAndFlush (msg);
-         * 这是异步的，msg可能被释放
-         */
-        ctx.channel ().writeAndFlush (msg);
-    }
+	@PineServiceEvent(modular = Modular.SYNCHRONIZING, command = Command.SYNCHRONOUS_PRODUCERS)
+	public void synchronousProducers(ChannelHandlerContext ctx, PineRequestContext msg, String clientServiceName, String clientServiceUrl) {
+		HeartbeatFactory.getClientServicePing(clientServiceName, clientServiceUrl, pineServiceProperties.getMaxNumberHeartbeatTimeouts());
+		PineRequestContext synchronousResponse = PineRequestContextFactory.createSynchronousResponse(clientServiceUrl);
+		ctx.channel().writeAndFlush(synchronousResponse);
+	}
 }

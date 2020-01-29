@@ -47,4 +47,11 @@ public class PineResponseFactory {
         pineResponse.setData (object);
         return pineResponse;
     }
+
+    public static PineResponse buildSynchronous(String clientServiceUrl){
+        PineResponse pineResponse = getPineResponse ();
+        pineResponse.setData (clientServiceUrl);
+        return pineResponse;
+    }
+
 }

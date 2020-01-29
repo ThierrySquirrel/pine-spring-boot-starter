@@ -27,8 +27,8 @@ package com.github.thierrysquirrel.core.constant;
 
 
 public final class ComponentScanConstant {
-    private ComponentScanConstant() {
-    }
+	public static final String DEFAULT_SCAN = "com.github.thierrysquirrel.netty.service.event";
 
-    public static final String DEFAULT_SCAN = "com.github.thierrysquirrel.netty.service.event";
+	private ComponentScanConstant() {
+	}
 }
