@@ -36,13 +36,6 @@ public class ClientCacheFactory {
     private static Map<String, ClientInit> clientCache = new ConcurrentHashMap<> ();
 
     public static ClientInit getClientInit(String url) {
-        ClientInit clientInit = clientCache.get (url);
-        if (clientInit == null) {
-            clientInit = new ClientInit ();
-            clientCache.put (url, clientInit);
-        } else {
-            return clientInit;
-        }
-        return getClientInit (url);
+        return clientCache.computeIfAbsent (url, key -> new ClientInit ());
     }
 }
