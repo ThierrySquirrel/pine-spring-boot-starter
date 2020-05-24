@@ -35,7 +35,7 @@ public class SerializerUtils {
 
     @SuppressWarnings("unchecked")
     public static <T> byte[] serialize(T object) {
-        Schema schema = RuntimeSchema.getSchema (object.getClass ());
+        Schema<T> schema = (Schema<T>) RuntimeSchema.getSchema (object.getClass ());
         return ProtobufIOUtil.toByteArray (object, schema, LinkedBuffer.allocate (LinkedBuffer.DEFAULT_BUFFER_SIZE));
     }
 
