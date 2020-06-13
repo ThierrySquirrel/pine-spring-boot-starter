@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.github.thierrysquirrel.pine.netty.core.client.factory.constant;
 
 /**
@@ -32,24 +31,8 @@ public enum RandomConstant {
     /**
      * RandomMax
      */
-    RANDOM_MAX (10000),
-    /**
-     * FirstLevel
-     */
-    FIRST_LEVEL (7),
-    /**
-     * Secondlevel
-     */
-    SECOND_LEVEL (40),
-    /**
-     * ThirdLevel
-     */
-    THIRD_LEVEL (60),
-    /**
-     * FourthLevel
-     */
-    FOURTH_LEVEL (300);
-    private int value;
+    RANDOM_MAX (16);
+    private final int value;
 
     RandomConstant(int value) {
         this.value = value;
@@ -58,4 +41,5 @@ public enum RandomConstant {
     public int getValue() {
         return value;
     }
+
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2020 the original author or authors.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,27 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.github.thierrysquirrel.pine.netty.core.client.factory;
+package com.github.thierrysquirrel.pine.netty.core.constant;
 
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 
 /**
- * ClassName: ClientEventLoopGroupFactory
+ * ClassName: ClientConstant
  * Description:
- * date: 2019/10/17 18:40
+ * date: 2020/6/13 9:54
  *
  * @author ThierrySquirrel
  * @since JDK 1.8
  */
-public class ClientEventLoopGroupFactory {
-    private ClientEventLoopGroupFactory() {
-    }
+public final class ClientConstant {
+    public static final EventLoopGroup CLIENT_EVENT_LOOP_GROUP = new NioEventLoopGroup ();
 
-    private static EventLoopGroup eventExecutors = new NioEventLoopGroup ();
-
-    public static EventLoopGroup getClientEventLoopGroup() {
-        return eventExecutors;
+    private ClientConstant() {
     }
 }

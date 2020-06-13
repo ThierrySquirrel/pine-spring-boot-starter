@@ -17,10 +17,10 @@
 package com.github.thierrysquirrel.pine.netty.core.client;
 
 
-import com.github.thierrysquirrel.pine.netty.core.client.factory.ClientEventLoopGroupFactory;
 import com.github.thierrysquirrel.pine.netty.core.client.factory.InetSocketAddressFactory;
 import com.github.thierrysquirrel.pine.netty.core.client.factory.constant.IdleStateConstant;
 import com.github.thierrysquirrel.pine.netty.core.client.utils.RandomUtils;
+import com.github.thierrysquirrel.pine.netty.core.constant.ClientConstant;
 import com.github.thierrysquirrel.pine.netty.domain.PineRequestContext;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -53,7 +53,7 @@ public class ClientInit {
             return;
         }
         Bootstrap b = new Bootstrap ();
-        b.group (ClientEventLoopGroupFactory.getClientEventLoopGroup ())
+        b.group (ClientConstant.CLIENT_EVENT_LOOP_GROUP)
                 .channel (NioSocketChannel.class)
                 .handler (new ClientInitInitChannelHandler (IdleStateConstant.OTHER_TIMEOUT.getValue (),
                         IdleStateConstant.WRITE_TIMEOUT.getValue (),
@@ -66,14 +66,15 @@ public class ClientInit {
     }
 
 
-    public void sheep() throws InterruptedException {
+    public synchronized void sheep() throws InterruptedException {
         while (completableFuture != null && !completableFuture.isDone ()) {
             int random = RandomUtils.getRandom ();
-            Thread.sleep (random);
+            this.wait (random);
         }
     }
 
     public void call(PineRequestContext pineRequestContext) {
         completableFuture.complete (pineRequestContext);
     }
+
 }

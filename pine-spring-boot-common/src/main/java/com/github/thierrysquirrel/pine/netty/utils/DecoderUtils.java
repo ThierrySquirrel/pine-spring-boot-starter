@@ -37,6 +37,7 @@ public class DecoderUtils {
 	public static boolean readPine(ByteBuf in) {
 		boolean readPine = false;
 		boolean loop = true;
+		in.markReaderIndex ();
 		while (loop) {
 
 			byte[] bytes = new byte[4];
@@ -47,10 +48,10 @@ public class DecoderUtils {
 				break;
 			}
 
-			in.resetReaderIndex();
 			in.readByte();
 
 			if (in.readableBytes() < DecoderConstant.MINIMUM_DECODING.getValue()) {
+				in.resetReaderIndex();
 				loop = false;
 			}
 		}

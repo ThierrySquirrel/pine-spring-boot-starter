@@ -17,6 +17,7 @@
 package com.github.thierrysquirrel.pine.netty.core.client.factory;
 
 import com.github.thierrysquirrel.pine.netty.core.client.ClientInit;
+import com.github.thierrysquirrel.pine.netty.core.constant.MapSizeConstant;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,12 +31,21 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since JDK 1.8
  */
 public class ClientCacheFactory {
+    private static final ThreadLocal<Map<String, ClientInit>> CLIENT_CACHE = new InheritableThreadLocal<> ();
+
     private ClientCacheFactory() {
     }
 
-    private static Map<String, ClientInit> clientCache = new ConcurrentHashMap<> ();
-
     public static ClientInit getClientInit(String url) {
-        return clientCache.computeIfAbsent (url, key -> new ClientInit ());
+        Map<String, ClientInit> clientInitMap = CLIENT_CACHE.get ();
+        if (null == clientInitMap) {
+            clientInitMap = new ConcurrentHashMap<> (MapSizeConstant.DEFAULT_SIZE.getValue ());
+            CLIENT_CACHE.set (clientInitMap);
+        }
+        return clientInitMap.computeIfAbsent (url, key -> new ClientInit ());
+    }
+
+    public static void remove() {
+        CLIENT_CACHE.remove ();
     }
 }

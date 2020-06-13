@@ -33,15 +33,6 @@ public class RandomUtils {
     }
 
     public static int getRandom() {
-        int random = ThreadLocalRandom.current ().nextInt (RandomConstant.RANDOM_MIN.getValue (), RandomConstant.RANDOM_MAX.getValue ());
-        if (RandomConstant.FIRST_LEVEL.getValue () >= random) {
-            return random;
-        } else if (RandomConstant.SECOND_LEVEL.getValue () >= random) {
-            return random;
-        } else if (RandomConstant.THIRD_LEVEL.getValue () >= random) {
-            return random;
-        } else {
-            return RandomConstant.FOURTH_LEVEL.getValue ();
-        }
+        return ThreadLocalRandom.current ().nextInt (RandomConstant.RANDOM_MIN.getValue (), RandomConstant.RANDOM_MAX.getValue ());
     }
 }

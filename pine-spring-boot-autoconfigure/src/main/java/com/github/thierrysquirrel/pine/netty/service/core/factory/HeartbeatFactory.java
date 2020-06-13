@@ -91,5 +91,4 @@ public class HeartbeatFactory {
     public static List<String> getClientServiceUrlList(String clientServiceName) {
         return clientServiceNameMap.get (clientServiceName);
     }
-
 }

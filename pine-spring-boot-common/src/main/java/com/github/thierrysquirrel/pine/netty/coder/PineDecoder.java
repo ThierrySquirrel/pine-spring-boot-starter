@@ -44,6 +44,7 @@ public class PineDecoder extends ByteToMessageDecoder {
                 int readerIndex = in.readerIndex ();
 
                 if (!DecoderUtils.readPine (in)) {
+                    in.readerIndex (readerIndex);
                     return;
                 }
 
