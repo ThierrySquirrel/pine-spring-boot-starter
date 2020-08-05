@@ -28,7 +28,7 @@
         <dependency>
             <artifactId>pine-spring-boot-starter</artifactId>
             <groupId>com.github.thierrysquirrel</groupId>
-            <version>1.2.5-RELEASE</version>
+            <version>1.2.6-RELEASE</version>
         </dependency>
 ``` 
 

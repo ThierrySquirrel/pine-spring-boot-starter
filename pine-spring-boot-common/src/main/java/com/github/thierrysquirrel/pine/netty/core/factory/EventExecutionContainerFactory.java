@@ -45,13 +45,8 @@ public class EventExecutionContainerFactory {
     }
 
     public static void setMethodContainer(Modular modular, Command command, MethodContainer methodContainer) {
-        Map<Command, MethodContainer> commandMethodContainerMap = eventExecutionContainer.get (modular);
-        if (commandMethodContainerMap==null) {
-            commandMethodContainerMap = new ConcurrentHashMap<> (MapSizeConstant.DEFAULT_SIZE.getValue ());
-            commandMethodContainerMap.put (command, methodContainer);
-            eventExecutionContainer.put (modular, commandMethodContainerMap);
-            return;
-        }
+        Map<Command, MethodContainer> commandMethodContainerMap = eventExecutionContainer
+                .computeIfAbsent (modular,mod->new ConcurrentHashMap<> (MapSizeConstant.DEFAULT_SIZE.getValue ()));
         commandMethodContainerMap.put (command, methodContainer);
     }
 }
