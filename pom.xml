@@ -7,7 +7,7 @@
     <groupId>com.github.thierrysquirrel</groupId>
     <artifactId>pine-spring-boot</artifactId>
     <packaging>pom</packaging>
-    <version>1.4.1.0-RELEASE</version>
+    <version>1.4.1.1-RELEASE</version>
 
     <name>pine-spring-boot</name>
     <description>pine-spring-boot</description>
@@ -16,7 +16,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.1</version>
+        <version>2.6.2</version>
         <relativePath/>
     </parent>
 
@@ -32,7 +32,7 @@
         <guava.version>31.0.1-jre</guava.version>
         <protostuff-runtime.version>1.7.4</protostuff-runtime.version>
         <protostuff-core.version>1.7.4</protostuff-core.version>
-        <netty-all.version>4.1.71.Final</netty-all.version>
+        <netty-all.version>4.1.72.Final</netty-all.version>
         <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
     </properties>
