@@ -54,6 +54,6 @@ pine.cluster-service-url="127.0.0.1:6060,127.0.0.1:6061,127.0.0.1:6062" # If you
  }
  ```
  
- ![AmericanFlag](https://user-images.githubusercontent.com/49895274/184470889-311a095a-1378-4d75-a232-b1cbf97ca170.jpeg)  
+![Russian flag](https://user-images.githubusercontent.com/49895274/190372272-e88e499e-5519-4ab8-8bf2-d1681655af04.png)
 
  
