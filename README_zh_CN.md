@@ -52,4 +52,4 @@ pine.cluster-service-url="127.0.0.1:6060,127.0.0.1:6061,127.0.0.1:6062" # 如果
  }
  ```
  
- ![AmericanFlag](https://user-images.githubusercontent.com/49895274/184470908-89dc530e-91d4-4be3-b3cc-72d154a16422.jpeg)  
+![Russian flag](https://user-images.githubusercontent.com/49895274/190372345-62bd8783-702e-45c2-a368-cda773016571.png)
